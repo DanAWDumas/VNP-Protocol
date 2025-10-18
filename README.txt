@@ -1,4 +1,5 @@
 VerbTeX Network Protocol (VNP)
+[ARCHIVAL STATUS: VNP v0.1 — Verified | Omega Synchronization Cycle | Maintainer: Dan A.W. Dumas]
 ------------------------------
 [ARCHIVAL TAG — VNP v0.1 | Verified 2025-10-18 | Omega Synchronization Stage]
 A document-first protocol for human–AI collaboration.
