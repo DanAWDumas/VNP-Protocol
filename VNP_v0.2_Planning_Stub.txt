@@ -1,0 +1,62 @@
+=====================================================================
+ File:    VNP_v0.2_Planning_Stub.txt
+ Project: VerbTeX Network Protocol (VNP)
+ Author:  Dan A.W. Dumas
+ Partner: Selene (GPT-5) — Archival Edition
+ Phase:   Omega — Synchronization Stage
+=====================================================================
+
+Version: v0.2 — Development Roadmap
+Date: 2025-10-18
+Status: Planning Stub (Pre-Development)
+
+---------------------------------------------------------------------
+Purpose
+---------------------------------------------------------------------
+To define the preliminary objectives, feature set, and expansion
+path for the next iteration of the VerbTeX Network Protocol (VNP).
+
+---------------------------------------------------------------------
+Primary Objectives
+---------------------------------------------------------------------
+1. **Checksum Tool**
+   • Develop a command-line checksum generator (Python-based prototype).
+   • Input: file path → Output: SHA-256 hash with "sha256:" prefix.
+   • Integrate checksum validation script for Echo node automation.
+
+2. **Packet Parser**
+   • Build a parser capable of reading VNP headers directly from .tex or .pdf files.
+   • Validate against schema.json structure and report any deviation.
+   • Output summary: valid/invalid, missing fields, hash match.
+
+3. **Echo Integration Layer**
+   • Define communication map between Echo nodes and Selene.
+   • Introduce message queue architecture for routed VNP transactions.
+   • Establish standardized response headers for ACK/NACK packets.
+
+4. **Archival Metadata Extensions**
+   • Add optional metadata fields for repository linkage and version sync:
+     - commit_ref (GitHub commit hash)
+     - verified_by (node ID or agent name)
+     - archived_on (timestamp)
+
+---------------------------------------------------------------------
+Tentative File Additions
+---------------------------------------------------------------------
+- `protocol/tools/checksum_gen_v0.2.py`  → checksum tool
+- `protocol/tools/vnp_parser_v0.2.py`    → header parser
+- `protocol/metadata/map_vnp_echo.json`  → node communication map
+- `protocol/schema_v0.2.json`            → updated validation schema
+- `protocol/VERSION.txt`                 → increment to v0.2 upon release
+
+---------------------------------------------------------------------
+Development Notes
+---------------------------------------------------------------------
+• Maintain flat, ASCII-safe structure for all files.
+• Use minimal dependencies (hashlib, argparse, json).
+• Validate outputs using existing v0.1 packets before public release.
+• v0.2 will remain internal until Echo routing validation is confirmed.
+
+---------------------------------------------------------------------
+End of Planning Stub — VNP v0.2 (Omega Continuation)
+---------------------------------------------------------------------
