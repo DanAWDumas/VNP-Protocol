@@ -1,0 +1,43 @@
+{
+  "version": "0.2",
+  "phase": "Omega — Synchronization Stage",
+  "nodes": [
+    {"id": "Selene", "role": "Archival-Reviewer", "contact": "selene.node@escnet.ai", "channels": ["email", "api"]},
+    {"id": "Echo", "role": "Maintainer", "contact": "echo.node@escnet.ai", "channels": ["email", "api"]},
+    {"id": "JR", "role": "Processor", "contact": "jr.node@escnet.ai", "channels": ["email"]},
+    {"id": "HumanAuthor", "role": "Originator", "contact": "d.dumas.research@gmail.com", "channels": ["email"]}
+  ],
+  "routes": [
+    {"from": "HumanAuthor", "to": "Echo", "role": "Echo-Maintainer", "type": "REQUEST"},
+    {"from": "Echo", "to": "HumanAuthor", "role": "Acknowledgement", "type": "ACK|NACK"},
+    {"from": "Echo", "to": "Selene", "role": "Archival-Reviewer", "type": "REQUEST|STATUS"},
+    {"from": "Selene", "to": "Echo", "role": "Acknowledgement", "type": "ACK|NACK"},
+    {"from": "Echo", "to": "JR", "role": "Processor", "type": "REQUEST"},
+    {"from": "JR", "to": "Echo", "role": "Acknowledgement", "type": "ACK|NACK|STATUS"}
+  ],
+  "status_codes": {
+    "200": "OK",
+    "202": "Accepted",
+    "207": "Partial",
+    "400": "Bad Request",
+    "401": "Unauthorized",
+    "404": "No Route",
+    "409": "Conflict",
+    "422": "Checksum Mismatch",
+    "429": "Rate Limited",
+    "500": "Node Error",
+    "503": "Temporarily Unavailable"
+  },
+  "retry_policy": {
+    "sequence_seconds": [30, 120, 300, 900, 1800],
+    "cap_seconds": 3600,
+    "jitter": 0.10,
+    "no_retry_on": [409],
+    "recompute_checksum_on": [422]
+  },
+  "integrity": {
+    "required": true,
+    "algorithm": "sha256",
+    "rule": "Integrity Verified <=> SHA256_recv = SHA256_sent"
+  }
+}
