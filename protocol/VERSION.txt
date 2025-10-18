@@ -1,9 +1,0 @@
-VerbTeX Network Protocol (VNP)
-Version: v0.1
-Stage: Initialization Cycle
-Date: 2025-10-18
-
-Change Log:
-- v0.1 — Initial repository foundation
-  * Added spec.txt, packet template, schema.json, example packet
-  * Switched repository to flat plaintext display standard
