@@ -1,0 +1,15 @@
+{
+  "title": "VNP Packet Header v0.1",
+  "type": "object",
+  "properties": {
+    "to": {"type": "string"},
+    "from": {"type": "string"},
+    "role": {"type": "string"},
+    "ref_project": {"type": "string"},
+    "task_id": {"type": "string"},
+    "checksum": {"type": "string"},
+    "intent": {"type": "string"},
+    "in_reply_to": {"type": "string"}
+  },
+  "required": ["to", "from", "role", "task_id"]
+}
