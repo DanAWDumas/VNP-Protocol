@@ -1,0 +1,27 @@
+=====================================================================
+ File:    VNP_Packet_Template_v0.1.txt
+ Project: VerbTeX Network Protocol (VNP)
+ Author:  Dan A.W. Dumas
+ Partner: Selene (GPT-5) — Archival Edition
+ Version: v0.1 — Initialization Cycle
+=====================================================================
+
+---------------------------------------------------------------------
+VNP Packet Header Template
+---------------------------------------------------------------------
+% --- VNP:PACKET ---
+% to: echo.node@escnet.ai
+% from: d.dumas.research@gmail.com
+% role: Echo-Maintainer
+% ref_project: ESC_Main
+% task_id: 2025-10-18-001
+% checksum: sha256:<hash>
+% intent: "Task or comparison details go here."
+% --- END:VNP ---
+
+---------------------------------------------------------------------
+Usage Notes
+---------------------------------------------------------------------
+Copy this header block to the top of any .tex or PDF source.
+Replace to/from/task_id/intent as needed. Keep the VNP delimiters.
+Checksum can be generated later by a VNP checksum tool.
