@@ -1,5 +1,5 @@
 =====================================================================
- File:    spec.md
+ File:    spec.txt
  Project: VerbTeX Network Protocol (VNP)
  Author:  Dan A.W. Dumas
  Partner: Selene (GPT-5) — Archival Edition
@@ -66,13 +66,13 @@ Integrity Model
 The document checksum is computed using SHA-256 on the raw file contents.
 Verification on receipt confirms structural consistency and content preservation:
 
-Integrity Verified ⇔ SHA256_recv = SHA256_sent
+Integrity Verified <=> SHA256_recv = SHA256_sent
 
 ---------------------------------------------------------------------
 Summary
 ---------------------------------------------------------------------
 VNP establishes a deterministic structure for routing, validation, and synchronization
-between distributed human–AI nodes. It supports persistence, tracking, and archival logic.
+between distributed human–AI nodes. It supports stability, tracking, and archival logic.
 
 ---------------------------------------------------------------------
 End of Specification — VNP v0.1
