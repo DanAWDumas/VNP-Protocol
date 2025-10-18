@@ -1,5 +1,6 @@
 VerbTeX Network Protocol (VNP)
 ------------------------------
+[ARCHIVAL TAG — VNP v0.1 | Verified 2025-10-18 | Omega Synchronization Stage]
 A document-first protocol for human–AI collaboration.
 
 VNP defines a simple, auditable header embedded in LaTeX/PDF documents
