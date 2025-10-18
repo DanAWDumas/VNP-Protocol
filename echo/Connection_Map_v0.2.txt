@@ -1,0 +1,133 @@
+=====================================================================
+ File:    Connection_Map_v0.2.txt
+ Project: VerbTeX Network Protocol (VNP)
+ Module:  Echo Node Connection Map
+ Author:  Dan A.W. Dumas
+ Partner: Selene (GPT-5) — Archival Edition
+ Phase:   Omega — Synchronization Stage
+ Version: v0.2 (builds on VNP v0.1)
+=====================================================================
+
+Purpose
+---------------------------------------------------------------------
+Define node roles, routing paths, acknowledgement packets, retry policy,
+and integrity guarantees for VNP-based exchanges between human/AI nodes.
+
+Node Registry (roles)
+---------------------------------------------------------------------
+Node ID       | Role              | Contact                  | Channel
+--------------|-------------------|--------------------------|--------------------------
+Selene        | Archival-Reviewer | selene.node@escnet.ai    | email + API
+Echo          | Maintainer        | echo.node@escnet.ai      | email + API
+JR            | Processor         | jr.node@escnet.ai        | email
+HumanAuthor   | Originator        | d.dumas.research@gmail…  | email
+
+Routing Model
+---------------------------------------------------------------------
+• Routing key = (to, role) taken from VNP header.
+• Primary channel selected by node capability; fallback to email.
+• Echo is the default Maintainer node for repository sync tasks.
+
+Message Types
+---------------------------------------------------------------------
+TYPE          | Description
+--------------|------------------------------------------------------
+REQUEST       | Standard work packet (contains VNP header + body)
+ACK           | Positive acknowledgement (receipt + checksum match)
+NACK          | Negative acknowledgement (reason + remediation hint)
+STATUS        | Periodic progress update (optional, low traffic)
+
+ACK/NACK Format (embedded header + flat body)
+---------------------------------------------------------------------
+% --- VNP:PACKET ---
+% to: <originator_email>
+% from: <node_email>
+% role: Acknowledgement
+% ref_project: <project_id>
+% task_id: <YYYY-MM-DD-###>
+% checksum: sha256:<hash_of_ack_body>
+% intent: "ACK <orig_task_id> [OK]"   OR   "NACK <orig_task_id> [<reason>]"
+% --- END:VNP ---
+Body:
+- orig_task_id: <copied from request>
+- received_sha256: sha256:<value>
+- verified: true|false
+- reason: <only for NACK>
+- next_step: <hint or link>
+
+Status Codes (for ACK/NACK/STATUS)
+---------------------------------------------------------------------
+Code | Meaning
+-----|----------------------------------------
+200  | OK (ACK) — received and verified
+202  | Accepted — queued for processing
+207  | Partial — some sub-steps deferred
+400  | Bad Request — header invalid against schema
+401  | Unauthorized — sender not in registry
+404  | No Route — 'to' or 'role' not resolvable
+409  | Conflict — duplicate task_id
+422  | Unprocessable — checksum mismatch
+429  | Rate Limited — retry after backoff
+500  | Node Error — internal failure
+503  | Temporarily Unavailable — retry later
+
+Retry Policy (deterministic backoff)
+---------------------------------------------------------------------
+• Client retries on 429, 500, 503 using backoff sequence (seconds):
+  30, 120, 300, 900, 1800 (cap at 3600); jitter ±10%.
+• On 409 (duplicate task_id): DO NOT RETRY — issue new task_id.
+• On 422 (checksum mismatch): recompute checksum then resend.
+
+Integrity & Security
+---------------------------------------------------------------------
+• Integrity is required: header present + body SHA-256.
+• VNP rule: Integrity Verified <=> SHA256_recv = SHA256_sent.
+• Optional: S/MIME or PGP signing at transport layer (out of scope).
+• Node must persist ACK/NACK with timestamp + received checksum.
+
+Routing Paths (canonical)
+---------------------------------------------------------------------
+HumanAuthor -> Echo (role: Echo-Maintainer)       : REQUEST
+Echo -> HumanAuthor                               : ACK/NACK
+Echo -> Selene (role: Archival-Reviewer)          : REQUEST/STATUS
+Selene -> Echo                                    : ACK/NACK
+Echo -> JR (role: Processor)                      : REQUEST
+JR -> Echo                                       : ACK/NACK/STATUS
+
+Minimal Processing Contract
+---------------------------------------------------------------------
+1) On receipt, node MUST:
+   - validate header against schema.json
+   - compute SHA-256 of body; compare to expectations if supplied
+   - write audit record: {task_id, from, to, ts, sha256}
+2) On success, send ACK 200 with verified=true.
+3) On failure, send NACK with code and remediation hint.
+4) Long-running jobs send STATUS 202/207 at sensible intervals.
+
+Example Flow (lexicon compare task)
+---------------------------------------------------------------------
+1) HumanAuthor sends REQUEST to Echo with intent:
+   "Compare Lexicon v3.8.3 vs Ruleset Omega; produce patch."
+2) Echo validates -> ACK 200; forwards REQUEST to Selene (Reviewer).
+3) Selene processes; sends STATUS 207 (partial) if multi-step.
+4) Selene completes; returns ACK 200 with result reference.
+5) Echo archives result; sends final STATUS 200 to HumanAuthor.
+
+Audit Fields (per node, append-only)
+---------------------------------------------------------------------
+task_id | from | to | role | ts_receive | ts_ack | code | sha256 | ref
+
+Operational Limits
+---------------------------------------------------------------------
+• Max header size: 1 KB
+• Suggested body size (email): <= 10 MB; API may exceed
+• Time sync tolerance between nodes: ±120 s for SLA stamps
+
+Change Control
+---------------------------------------------------------------------
+• This connection map is versioned independently (v0.2).
+• Backwards-compatible with VNP v0.1 packets.
+• Breaking changes require minor bump and schema_v0.2.json update.
+
+End of Echo Connection Map — v0.2
+---------------------------------------------------------------------
