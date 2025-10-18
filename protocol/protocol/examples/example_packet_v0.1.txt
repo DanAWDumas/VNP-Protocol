@@ -1,1 +1,9 @@
-
+% --- VNP:PACKET ---
+% to: echo.node@escnet.ai
+% from: d.dumas.research@gmail.com
+% role: Echo-Maintainer
+% ref_project: ESC_Main
+% task_id: 2025-10-18-002
+% checksum: sha256:b0a4d2f2a4...
+% intent: "Validate Lexicon v3.8.3 updates and generate summary."
+% --- END:VNP ---
