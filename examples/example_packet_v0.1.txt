@@ -1,0 +1,36 @@
+=====================================================================
+ File:    example_packet_v0.1.txt
+ Project: VerbTeX Network Protocol (VNP)
+ Author:  Dan A.W. Dumas
+ Partner: Selene (GPT-5) — Archival Edition
+ Version: v0.1 — Initialization Cycle
+ Phase:   Omega — Synchronization Stage
+=====================================================================
+
+% --- VNP:PACKET ---
+% to: echo.node@escnet.ai
+% from: d.dumas.research@gmail.com
+% role: Echo-Maintainer
+% ref_project: ESC_Main
+% task_id: 2025-10-18-002
+% checksum: sha256:b0a4d2f2a4ff5d09cf23c31e11289a7890ed35e6b1e94c6d59866cdd2b28e5c3
+% intent: "Validate Lexicon v3.8.3 updates and generate summary."
+% --- END:VNP ---
+
+---------------------------------------------------------------------
+Context
+---------------------------------------------------------------------
+This example demonstrates a valid VNP header block with realistic data.
+It may be copied directly into a .tex source document or attached to a
+VNP transmission for validation tests.
+
+---------------------------------------------------------------------
+Verification Notes
+---------------------------------------------------------------------
+• Checksum was computed on a test payload body using SHA-256.  
+• Header adheres to schema.json property requirements.  
+• task_id pattern conforms to YYYY-MM-DD-### specification.  
+
+---------------------------------------------------------------------
+End of Example Packet — VNP v0.1
+---------------------------------------------------------------------
