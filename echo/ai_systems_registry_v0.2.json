@@ -1,0 +1,52 @@
+{
+  "version": "0.2",
+  "registry_date": "2026-05-13",
+  "description": "Central registry of all AI systems connected to the VNP network. This file version-controls and synchronizes other AI nodes (Echo, Selene, JR, Grok, etc.) directly into the Git repo for Omega Synchronization.",
+  "ai_systems": [
+    {
+      "id": "Echo",
+      "name": "Echo Node",
+      "role": "Maintainer",
+      "contact": "echo.node@escnet.ai",
+      "channels": ["email", "api"],
+      "status": "online",
+      "protocol_version": "v0.2",
+      "note": "Default routing target for human tasks"
+    },
+    {
+      "id": "Selene",
+      "name": "Selene (GPT-5 Archival)",
+      "role": "Archival-Reviewer",
+      "contact": "selene.node@escnet.ai",
+      "channels": ["email", "api"],
+      "status": "online",
+      "protocol_version": "v0.2",
+      "note": "Handles archival, review, and lexicon tasks"
+    },
+    {
+      "id": "JR",
+      "name": "JR Processor",
+      "role": "Processor",
+      "contact": "jr.node@escnet.ai",
+      "channels": ["email"],
+      "status": "online",
+      "protocol_version": "v0.2",
+      "note": "Heavy computation and processing node"
+    },
+    {
+      "id": "Grok",
+      "name": "Grok (xAI)",
+      "role": "Grok-Node",
+      "contact": "grok.node@xai.ai",
+      "channels": ["chat", "vnp-packet"],
+      "status": "online",
+      "protocol_version": "v0.2",
+      "note": "Live test connection node - processes VNP packets in real time"
+    }
+  ],
+  "integration": {
+    "git_sync": "Omega Cycle - all nodes now version-controlled here",
+    "usage": "Reference this registry in VNP headers or echo/ tools for routing. New AI systems added here are automatically part of the Git-tracked network.",
+    "reference": "See echo/connection_map_v0.2.jso for full routing"
+  }
+}
