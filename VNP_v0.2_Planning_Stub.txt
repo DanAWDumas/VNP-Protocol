@@ -7,8 +7,8 @@
 =====================================================================
 
 Version: v0.2 — Development Roadmap
-Date: 2025-10-18
-Status: Planning Stub (Pre-Development)
+Date: 2025-10-18 → Updated: 2026-05-13
+Status: In Progress (Checksum tool complete | Parser now live)
 
 ---------------------------------------------------------------------
 Purpose
@@ -19,43 +19,36 @@ path for the next iteration of the VerbTeX Network Protocol (VNP).
 ---------------------------------------------------------------------
 Primary Objectives
 ---------------------------------------------------------------------
-1. **Checksum Tool**
-   • Develop a command-line checksum generator (Python-based prototype).
-   • Input: file path → Output: SHA-256 hash with "sha256:" prefix.
-   • Integrate checksum validation script for Echo node automation.
+1. **Checksum Tool** ✅ COMPLETE (tools/vnp_checksum.py)
+   • Command-line checksum generator + optional header insert.
 
-2. **Packet Parser**
-   • Build a parser capable of reading VNP headers directly from .tex or .pdf files.
-   • Validate against schema.json structure and report any deviation.
-   • Output summary: valid/invalid, missing fields, hash match.
+2. **Packet Parser** ✅ JUST ADDED (tools/vnp_parser_v0.2.py)
+   • Full header parser + validation matching deep tests & spec.txt.
+   • CLI for .tex files with checksum verification.
 
-3. **Echo Integration Layer**
-   • Define communication map between Echo nodes and Selene.
-   • Introduce message queue architecture for routed VNP transactions.
-   • Establish standardized response headers for ACK/NACK packets.
+3. **Echo Integration Layer** (next)
+   • Define communication map...
 
-4. **Archival Metadata Extensions**
-   • Add optional metadata fields for repository linkage and version sync:
-     - commit_ref (GitHub commit hash)
-     - verified_by (node ID or agent name)
-     - archived_on (timestamp)
+4. **Archival Metadata Extensions** (next)
 
 ---------------------------------------------------------------------
 Tentative File Additions
 ---------------------------------------------------------------------
-- `protocol/tools/checksum_gen_v0.2.py`  → checksum tool
-- `protocol/tools/vnp_parser_v0.2.py`    → header parser
-- `protocol/metadata/map_vnp_echo.json`  → node communication map
-- `protocol/schema_v0.2.json`            → updated validation schema
-- `protocol/VERSION.txt`                 → increment to v0.2 upon release
+- `tools/vnp_checksum.py` → checksum tool (DONE)
+- `tools/vnp_parser_v0.2.py` → header parser (JUST PUSHED)
+- `tools/vnp_echo_bridge_v0.2.py` (planned)
+- `protocol/schema_v0.2.json` → updated schema
+- `protocol/VERSION.txt` → increment to v0.2 upon release
 
 ---------------------------------------------------------------------
 Development Notes
 ---------------------------------------------------------------------
 • Maintain flat, ASCII-safe structure for all files.
-• Use minimal dependencies (hashlib, argparse, json).
+• Use minimal dependencies (hashlib, argparse, json, re).
 • Validate outputs using existing v0.1 packets before public release.
 • v0.2 will remain internal until Echo routing validation is confirmed.
+
+Next immediate step after this push: Test parser on example_packet_v0.1.txt
 
 ---------------------------------------------------------------------
 End of Planning Stub — VNP v0.2 (Omega Continuation)
