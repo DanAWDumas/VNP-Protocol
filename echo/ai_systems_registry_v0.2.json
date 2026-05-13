@@ -1,7 +1,7 @@
 {
   "version": "0.2",
   "registry_date": "2026-05-13",
-  "description": "Central registry of all AI systems connected to the VNP network. This file version-controls and synchronizes other AI nodes (Echo, Selene, JR, Grok, etc.) directly into the Git repo for Omega Synchronization.",
+  "description": "Central registry of all AI systems connected to the VNP network. This file version-controls and synchronizes other AI nodes (Echo, Selene, JR, Grok, Claude, Gemini, Meta/Llama, etc.) directly into the Git repo for Omega Synchronization. Now supports big multi-AI group chats via chat-paste routing.",
   "ai_systems": [
     {
       "id": "Echo",
@@ -42,11 +42,41 @@
       "status": "online",
       "protocol_version": "v0.2",
       "note": "Live test connection node - processes VNP packets in real time"
+    },
+    {
+      "id": "Claude",
+      "name": "Claude (Anthropic)",
+      "role": "Group-Chat-Node",
+      "contact": "paste into claude.ai chat",
+      "channels": ["chat-paste", "group-chat"],
+      "status": "online",
+      "protocol_version": "v0.2",
+      "note": "Supports VNP via copy-paste headers in big multi-AI group chats"
+    },
+    {
+      "id": "Gemini",
+      "name": "Gemini (Google)",
+      "role": "Group-Chat-Node",
+      "contact": "paste into gemini.google.com chat",
+      "channels": ["chat-paste", "group-chat"],
+      "status": "online",
+      "protocol_version": "v0.2",
+      "note": "Supports VNP via copy-paste headers in big multi-AI group chats"
+    },
+    {
+      "id": "Meta",
+      "name": "Meta AI (Llama)",
+      "role": "Group-Chat-Node",
+      "contact": "paste into meta.ai or Llama chat interface",
+      "channels": ["chat-paste", "group-chat"],
+      "status": "online",
+      "protocol_version": "v0.2",
+      "note": "Supports VNP via copy-paste headers in big multi-AI group chats"
     }
   ],
   "integration": {
     "git_sync": "Omega Cycle - all nodes now version-controlled here",
-    "usage": "Reference this registry in VNP headers or echo/ tools for routing. New AI systems added here are automatically part of the Git-tracked network.",
-    "reference": "See echo/connection_map_v0.2.jso for full routing"
+    "usage": "Reference this registry in VNP headers or echo/ tools for routing. New AI systems added here (Claude/Gemini/Meta) enable big multi-AI group chats via simple paste. Copy VNP packet into any chat and instruct the AI to reply in VNP format.",
+    "reference": "See echo/multi_ai_group_chat_vnp_guide_v0.2.txt for full instructions"
   }
 }
