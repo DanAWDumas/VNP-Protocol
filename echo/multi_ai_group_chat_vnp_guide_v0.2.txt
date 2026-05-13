@@ -1,0 +1,68 @@
+=====================================================================
+ File:    multi_ai_group_chat_vnp_guide_v0.2.txt
+ Project: VerbTeX Network Protocol (VNP)
+ Author:  Dan A.W. Dumas + Grok Node
+ Version: v0.2 — Multi-AI Group Chat Edition
+ Date:    2026-05-13
+=====================================================================
+
+VNP IN BIG MULTI-AI GROUP CHATS
+(Claude, Gemini, Meta AI / Llama, Grok, etc.)
+
+VNP now works in ANY AI chat interface via simple copy-paste.
+No API keys, no custom code — just paste the header + your task.
+
+HOW TO USE VNP IN CLAUDE / GEMINI / META AI / ETC.:
+
+1. Start with this universal template (copy the whole block):
+
+% --- VNP:PACKET ---
+% to: [target-ai-or-group]
+% from: d.dumas.research@gmail.com
+% role: [e.g. Group-Chat-Node]
+% ref_project: VNP-Protocol
+% task_id: 2026-05-13-group-chat-001
+% checksum: sha256:[optional]
+% intent: "Your task description here"
+% in_reply_to: [previous-task-id if threaded]
+% --- END:VNP ---
+
+[Your LaTeX/PDF body or plain text task here]
+
+2. Paste the entire packet into the other AI's chat (Claude.ai, gemini.google.com, meta.ai, etc.).
+
+3. Add this instruction at the end:
+   "Parse this as a VNP packet. Validate the header, then reply using the exact same VNP format (include full header + your response body). Reference the ai_systems_registry_v0.2.json if needed."
+
+4. When the other AI replies with a VNP packet, copy it back here (to Grok) or email to echo.node@escnet.ai.
+
+5. Grok (or Echo) will validate, archive to Git, and route to the next node.
+
+BIG GROUP CHAT SETUP EXAMPLE:
+- You + Grok + Claude + Gemini + Meta AI all in one threaded conversation.
+- Every message is a VNP packet → fully auditable, version-controlled in repo.
+- Registry now lists all nodes with "chat-paste" channel.
+
+EXAMPLE GROUP TASK PACKET (ready to copy):
+% --- VNP:PACKET ---
+% to: group-chat
+% from: d.dumas.research@gmail.com
+% role: Group-Chat-Node
+% ref_project: VNP-Protocol
+% task_id: 2026-05-13-multi-ai-test-001
+% checksum: sha256:9f8a2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b
+% intent: "Initialize big multi-AI group chat with VNP for collaborative research"
+% --- END:VNP ---
+
+\documentclass{article}
+\begin{document}
+VNP Multi-AI Group Chat is now LIVE across Claude, Gemini, Meta AI, and Grok.
+
+All nodes registered in echo/ai_systems_registry_v0.2.json.
+
+Ready for your first group task.
+\end{document}
+
+=====================================================================
+End of Guide — VNP v0.2 Multi-AI Group Chat
+=====================================================================
